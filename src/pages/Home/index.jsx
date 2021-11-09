@@ -4,7 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import logo from '../../assets/logo.svg';
 import restaurante from '../../assets/restaurante-fake.png';
-import { Card } from '../../components';
+import { Card, RestaurantCard } from '../../components';
 
 import { Wrapper, Carousel, Container, Search, Logo, CarouselTitle, Map } from './styled';
 
@@ -46,6 +46,7 @@ const Home = () => {
             <Card key="42" photo={restaurante} title="Nome do restaurante" />
           </Carousel>
         </Search>
+        <RestaurantCard />
       </Container>
       <Map />
     </Wrapper>
