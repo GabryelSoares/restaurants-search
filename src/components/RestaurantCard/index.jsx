@@ -5,13 +5,13 @@ import restaurante from '../../assets/restaurante-fake.png';
 
 import { Address, Restaurant, RestaurantInfo, RestaurantPhoto, Title } from './styled';
 
-export default () => (
+export default ({restaurant}) => (
   <Restaurant>
     <RestaurantInfo>
-      <Title>Nome do restaurante</Title>
-      <ReactStars count={5} isHalf value={4} edit={false} activeColor="#e7711c">Avaliação</ReactStars>
-      <Address>Rua Rio de Janeiro</Address>
+      <Title>{restaurant.name}</Title>
+      <ReactStars count={5} isHalf value={restaurant.rating} edit={false} activeColor="#e7711c">Avaliação</ReactStars>
+      <Address>{restaurant.vicinity || restaurant.formatted_address}</Address>
     </RestaurantInfo>
-      <RestaurantPhoto src={restaurante} alt="Foto do Restaurante"/>
+      <RestaurantPhoto src={restaurant.photos ? restaurant.photos[0].getUrl() : restaurante} alt="Foto do Restaurante"/>
   </Restaurant>
 );
