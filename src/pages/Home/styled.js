@@ -32,7 +32,7 @@ export const Map = styled.div`
 
 export const Carousel = styled(Slider)`
   .slick-slide {
-    margin-right: 16px;
+    margin-right: 36px;
   }
 `;
 
@@ -43,4 +43,24 @@ export const CarouselTitle = styled.h1`
   font-weight: bold;
   line-height: 32px;
   margin: 16px 0;
+`;
+
+export const ModalTitle = styled.p`
+  margin-bottom: 8px;
+  letter-spacing: 0.11px;
+  font-family: ${(props) => props.theme.fonts.regular };
+  color: ${(props) => props.theme.colors.text };
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: bold;
+`;
+
+export const ModalContent = styled.p`
+  margin-bottom: 8px;
+  letter-spacing: 0.11px;
+  font-family: ${(props) => props.theme.fonts.regular };
+  color: ${(props) => props.theme.colors.text };
+  font-weight: normal;
+  line-height: 20px;
+  font-size: 16px;
 `;

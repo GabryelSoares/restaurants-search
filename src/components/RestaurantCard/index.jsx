@@ -5,8 +5,8 @@ import restaurante from '../../assets/restaurante-fake.png';
 
 import { Address, Restaurant, RestaurantInfo, RestaurantPhoto, Title } from './styled';
 
-export default ({restaurant}) => (
-  <Restaurant>
+export default ({restaurant, onClick}) => (
+  <Restaurant onClick={onClick}>
     <RestaurantInfo>
       <Title>{restaurant.name}</Title>
       <ReactStars count={5} isHalf value={restaurant.rating} edit={false} activeColor="#e7711c">Avaliação</ReactStars>
