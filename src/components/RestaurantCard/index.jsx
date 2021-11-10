@@ -5,7 +5,7 @@ import restaurante from '../../assets/restaurante-fake.png';
 
 import { Address, Restaurant, RestaurantInfo, RestaurantPhoto, Title } from './styled';
 
-export default ({ }) => (
+export default () => (
   <Restaurant>
     <RestaurantInfo>
       <Title>Nome do restaurante</Title>

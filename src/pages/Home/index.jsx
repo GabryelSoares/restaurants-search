@@ -4,12 +4,13 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import logo from '../../assets/logo.svg';
 import restaurante from '../../assets/restaurante-fake.png';
-import { Card, RestaurantCard } from '../../components';
+import { Card, Modal, RestaurantCard } from '../../components';
 
 import { Wrapper, Carousel, Container, Search, Logo, CarouselTitle, Map } from './styled';
 
 const Home = () => {
   const [ inputValue, setInputValue ] = useState('')
+  const [ modalOpened, setModalOpened ] = useState(false)
 
   const settings = {
     dots: false,
@@ -45,10 +46,12 @@ const Home = () => {
             <Card key="35" photo={restaurante} title="Nome do restaurante" />
             <Card key="42" photo={restaurante} title="Nome do restaurante" />
           </Carousel>
+          <button onClick={()=>setModalOpened(true)}>AbrirModal</button>
         </Search>
         <RestaurantCard />
       </Container>
       <Map />
+      <Modal open={modalOpened} onClose={()=>{setModalOpened(!modalOpened)}}/>
     </Wrapper>
   );
 };
