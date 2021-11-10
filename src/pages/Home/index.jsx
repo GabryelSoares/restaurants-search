@@ -5,7 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import logo from '../../assets/logo.svg';
 import restaurante from '../../assets/restaurante-fake.png';
-import { Card, Map, Modal, RestaurantCard } from '../../components';
+import { Card, Loader, Map, Modal, RestaurantCard, Skeleton } from '../../components';
 
 import { Wrapper, Carousel, Container, ModalContent, ModalTitle, Search, Logo, CarouselTitle } from './styled';
 
@@ -53,18 +53,20 @@ const Home = () => {
               endAdornment: <SearchIcon />,
             }}
           />
-          <CarouselTitle>Na sua Área</CarouselTitle>
-          <Carousel {...settings}>
-            {restaurants.map((restaurant) => (
-              <Card 
-                key={restaurant.place_id}
-                photo={restaurant.photos ? restaurant.photos[0].getUrl() : restaurante} 
-                title={restaurant.name}
-              />
-            ))}
-            
-          </Carousel>
-          <button onClick={()=>setModalOpened(true)}>AbrirModal</button>
+          {restaurants.length > 0 ? (
+            <>
+              <CarouselTitle>Na sua Área</CarouselTitle>
+              <Carousel {...settings}>
+                {restaurants.map((restaurant) => (
+                  <Card 
+                    key={restaurant.place_id}
+                    photo={restaurant.photos ? restaurant.photos[0].getUrl() : restaurante} 
+                    title={restaurant.name}
+                  />
+                ))}
+              </Carousel>
+            </>
+          ):<Loader />}
         </Search>
         {restaurants.map((restaurant) => (
           <RestaurantCard 
@@ -75,10 +77,22 @@ const Home = () => {
       </Container>
       <Map query={query} placeId={placeId}/>
       <Modal open={modalOpened} onClose={()=>{setModalOpened(!modalOpened)}}>
-        <ModalTitle>{restaurantSelected?.name}</ModalTitle>
-        <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
-        <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
-        <ModalContent>{restaurantSelected?.opening_hours?.open_now ? 'Aberto agora :-)' : 'Fechado neste momento :-('}</ModalContent>
+        {restaurantSelected ? (
+          <>
+            <ModalTitle>{restaurantSelected?.name}</ModalTitle>
+            <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
+            <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
+            <ModalContent>{restaurantSelected?.opening_hours?.open_now ? 'Aberto agora :-)' : 'Fechado neste momento :-('}</ModalContent>
+          </>
+        ):(
+          <>
+            <Skeleton width='8px' height='24px' />
+            <Skeleton width='8px' height='16px' />
+            <Skeleton width='8px' height='16px' />
+            <Skeleton width='8px' height='16px' />
+          </>
+        )}
+        
       </Modal>
     </Wrapper>
   );

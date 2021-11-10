@@ -28,7 +28,7 @@ export const MapContainer = (props) => {
         }
       });
     },
-    [google]
+    [google,dispatch]
   );
 
   const getDetails = useCallback(
@@ -64,6 +64,7 @@ export const MapContainer = (props) => {
 
   const searchNearby = (map, center) => {
     const service = new google.maps.places.PlacesService(map);
+    dispatch(setRestaurants([]));
 
     const request = {
       location: center,
